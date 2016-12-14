@@ -143,12 +143,12 @@
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Mentions of minor characters</h2>
                     <p class="lead">
-                        <input type="checkbox" name="" value="" onchange="toggle('name');">&nbsp;&nbsp;Slartibartfast<br>
-                        <input type="checkbox" name="" value="" onchange="toggle('name');">&nbsp;&nbsp;Prosthenic Vogon Jeltz<br>
-                        <input type="checkbox" name="" value="" onchange="toggle('name');">&nbsp;&nbsp;Random Dent<br>
-                        <input type="checkbox" name="" value="" onchange="toggle('name');">&nbsp;&nbsp;God<br>
-                        <input type="checkbox" name="" value="" onchange="toggle('name');">&nbsp;&nbsp;Hotblack Desiato<br>
-                        <input type="checkbox" name="" value="" onchange="toggle('name');">&nbsp;&nbsp;Fenchurch<br>
+                        <input type="checkbox" name="" value="" onchange="toggle('Slartibartfast');" checked>&nbsp;&nbsp;Slartibartfast<br>
+                        <input type="checkbox" name="" value="" onchange="toggle('Jeltz');">&nbsp;&nbsp;Prosthenic Vogon Jeltz<br>
+                        <input type="checkbox" name="" value="" onchange="toggle('Random');">&nbsp;&nbsp;Random Dent<br>
+                        <input type="checkbox" name="" value="" onchange="toggle('God');">&nbsp;&nbsp;God<br>
+                        <input type="checkbox" name="" value="" onchange="toggle('Hotblack');">&nbsp;&nbsp;Hotblack Desiato<br>
+                        <input type="checkbox" name="" value="" onchange="toggle('Fenchurch');">&nbsp;&nbsp;Fenchurch<br>
                     </p>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
@@ -258,7 +258,7 @@
             data: {
                 labels: ["hhgttg","rateotu","ltuae","slatfatf","mh"],
                 datasets: [{
-                    label: "Mentions",
+                    label: "Slartibartfast",
                     fill: false,
                     lineTension: 0.1,
                     backgroundColor: "rgba(75,192,192,0.4)",
@@ -292,15 +292,28 @@
         };
 
         function toggle(name){
-            newData = {
-                label: "My Second dataset",
-                fill: false,
-                backgroundColor: "rgb("+(Math.random * 255)+", "+(Math.random * 255)+", "+(Math.random * 255)+")",
-                borderColor: "rgb("+(Math.random * 255)+", "+(Math.random * 255)+", "+(Math.random * 255)+")",
-                data: [Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100]
-            };
+            var found = false;
 
-            config.data.datasets.push(newData);
+            for(var i = 0; i < config.data.datasets.length; i++){
+                if(config.data.datasets[i].label == name){
+                    config.data.datasets.splice(i, 1);
+                    found = true;
+                    break;
+                }
+            }
+
+            if(!found){
+                newData = {
+                    label: name,
+                    fill: false,
+                    backgroundColor: "rgb("+(Math.random() * 255)+", "+(Math.random() * 255)+", "+(Math.random() * 255)+")",
+                    borderColor: "rgb("+(Math.random() * 255)+", "+(Math.random() * 255)+", "+(Math.random() * 255)+")",
+                    data: [Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100]
+                };
+
+                config.data.datasets.push(newData);
+            }
+
             window.lineChart.update();
         }
 
