@@ -141,8 +141,15 @@
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">3D Device Mockups<br>by PSDCovers</h2>
-                    <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
+                    <h2 class="section-heading">Mentions of minor characters</h2>
+                    <p class="lead">
+                        <input type="checkbox" name="" value="" onchange="toggle('name');">&nbsp;&nbsp;Slartibartfast<br>
+                        <input type="checkbox" name="" value="" onchange="toggle('name');">&nbsp;&nbsp;Prosthenic Vogon Jeltz<br>
+                        <input type="checkbox" name="" value="" onchange="toggle('name');">&nbsp;&nbsp;Random Dent<br>
+                        <input type="checkbox" name="" value="" onchange="toggle('name');">&nbsp;&nbsp;God<br>
+                        <input type="checkbox" name="" value="" onchange="toggle('name');">&nbsp;&nbsp;Hotblack Desiato<br>
+                        <input type="checkbox" name="" value="" onchange="toggle('name');">&nbsp;&nbsp;Fenchurch<br>
+                    </p>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
                     <canvas id="canvas" width="300" height="300">
@@ -246,45 +253,60 @@
     <script src="js/Chart.js"></script>
 
     <script>
-        window.onload = function(){
-            var ctx = document.getElementById("canvas");
-            var myChart =  new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ["hhgttg","rateotu","ltuae","slatfatf","mh"],
-                    datasets: [{
-                        label: "Mentions",
-                        fill: false,
-                        lineTension: 0.1,
-                        backgroundColor: "rgba(75,192,192,0.4)",
-                        borderColor: "rgba(75,192,192,1)",
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
-                        pointBorderColor: "rgba(75,192,192,1)",
-                        pointBackgroundColor: "#fff",
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                        pointHoverBorderColor: "rgba(220,220,220,1)",
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 1,
-                        pointHitRadius: 10,
-                        data: [100,12,108,0,0],
-                        spanGaps: false,
-                    }],
-                     options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero:true
-                                }
-                            }]
-                        }
+        config = {
+            type: 'line',
+            data: {
+                labels: ["hhgttg","rateotu","ltuae","slatfatf","mh"],
+                datasets: [{
+                    label: "Mentions",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [100,12,108,0,0],
+                    spanGaps: false,
+                }],
+                 options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
                     }
                 }
-            });
+            }
+        };
+
+        function toggle(name){
+            newData = {
+                label: "My Second dataset",
+                fill: false,
+                backgroundColor: "rgb("+(Math.random * 255)+", "+(Math.random * 255)+", "+(Math.random * 255)+")",
+                borderColor: "rgb("+(Math.random * 255)+", "+(Math.random * 255)+", "+(Math.random * 255)+")",
+                data: [Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100, Math.random() * 100]
+            };
+
+            config.data.datasets.push(newData);
+            window.lineChart.update();
+        }
+
+        window.onload = function(){
+            var ctx = document.getElementById("canvas");
+            window.lineChart =  new Chart(ctx, config);
         };
     </script>
 
