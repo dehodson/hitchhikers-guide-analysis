@@ -2,7 +2,7 @@ import re
 
 def analyze(book):
 
-	characters = [["Arthur", "Ford", "Trillian", "Zaphod", "Marvin"], [0,0,0,0,0]]
+	characters = [["Arthur", "Ford", "Trillian", "Zaphod", "Marvin", "Slartibartfast", "Jeltz", "Random", "God", "Hotblack", "Fenchurch"], [0,0,0,0,0,0,0,0,0,0,0]]
 
 	with open(book) as f:
 		for line in f:
