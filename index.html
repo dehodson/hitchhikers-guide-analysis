@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Landing Page - Start Bootstrap Theme</title>
+    <title>The Statistical Guide to Hitchhiker's</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -73,7 +73,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
-                        <h1>The Statistics Guide to Hitchhiker's</h1>
+                        <h1>The Statistical Guide to Hitchhiker's</h1>
                         <h3>A statistical analysis of Douglas Adams' trilogy in five parts</h3>
                         <hr class="intro-divider">
                         
@@ -90,12 +90,14 @@
     <!-- Page Content -->
 
     <div class="content-section-b">
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1 col-sm-10 col-sm-offset-1">
-                <hr class="section-heading-spacer">
-                <div class="clearfix"></div>
-                <h2 class="section-heading">Why?</h2>
-                <p class="lead">I would just as soon ask "Why not?" The Hitchhiker's Guide to the Galaxy series has been a favorite of mine for many years. I happened to find the full text online and decided to see what kind of interesting data I could pull from it.</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Why?</h2>
+                    <p class="lead">I would just as soon ask "Why not?" The Hitchhiker's Guide to the Galaxy series has been a favorite of mine for many years. I happened to find the full text online and decided to see what kind of interesting data I could pull from it.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -143,7 +145,9 @@
                     <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="img/dog.png" alt="">
+                    <canvas id="canvas" width="300" height="300">
+                      Sorry, your browser doesn't support the &lt;canvas&gt; element.
+                    </canvas>
                 </div>
             </div>
 
@@ -238,6 +242,50 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/Chart.js"></script>
+
+    <script>
+        window.onload = function(){
+            var ctx = document.getElementById("canvas");
+            var myChart =  new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+        };
+    </script>
 
 </body>
 
