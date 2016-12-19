@@ -1,19 +1,22 @@
 import re
 
-def analyze(book):
+characters = ["Arthur", "Ford", "Trillian", "Zaphod", "Marvin", "Slartibartfast", "Jeltz", "Random", "God", "Hotblack", "Fenchurch"]
+objects    = ["Guide", "Vogon", "Gargle Blaster", "infinite improbability", "Sirius", "42", "forty-two", "krikkit", "golgafrinchan"]
 
-	characters = [["Arthur", "Ford", "Trillian", "Zaphod", "Marvin", "Slartibartfast", "Jeltz", "Random", "God", "Hotblack", "Fenchurch"], [0,0,0,0,0,0,0,0,0,0,0]]
+def analyze(book, data):
+
+	mentions = [0] * len(data)
 
 	with open(book) as f:
 		for line in f:
 			line = line.strip()
 
 			i = 0
-			for char in characters[0]:
-				characters[1][i] += len([m.start() for m in re.finditer(char, line)])
+			for d in data:
+				mentions[i] += len([m.start() for m in re.finditer(d, line, re.IGNORECASE)])
 				i += 1
 
-	print(characters)
+	print(zip(data, mentions))
 
 for i in range(1,6):
-	analyze("guide"+str(i)+".txt")
+	analyze("guide"+str(i)+".txt", objects)
