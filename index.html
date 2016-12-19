@@ -172,15 +172,15 @@
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Mentions of minor characters</h2>
+                    <h2 class="section-heading">Mentions of objects and races</h2>
                     <p class="lead">
-                        <input type="checkbox" name="" value="" onchange="toggle2('Guide');" checked>&nbsp;&nbsp;The Guide<br>
+                        <input type="checkbox" name="" value="" onchange="toggle2('Guide');">&nbsp;&nbsp;The Guide<br>
                         <input type="checkbox" name="" value="" onchange="toggle2('Vogon');">&nbsp;&nbsp;The Vogons<br>
                         <input type="checkbox" name="" value="" onchange="toggle2('Blaster');">&nbsp;&nbsp;Pan Galactic Gargle Blaster<br>
                         <input type="checkbox" name="" value="" onchange="toggle2('Improbability');">&nbsp;&nbsp;Infinite Improbability Drive<br>
                         <input type="checkbox" name="" value="" onchange="toggle2('Sirius');">&nbsp;&nbsp;The Sirius Cybernetics Corporation<br>
                         <input type="checkbox" name="" value="" onchange="toggle2('Krikkit');">&nbsp;&nbsp;Krikkit<br>
-                        <input type="checkbox" name="" value="" onchange="toggle2('42');">&nbsp;&nbsp;Fourty-Two<br>
+                        <input type="checkbox" name="" value="" onchange="toggle2('42');" checked>&nbsp;&nbsp;Fourty-Two<br>
                         <input type="checkbox" name="" value="" onchange="toggle2('Golgafrinchan');">&nbsp;&nbsp;The Golgafrinchans<br>
                     </p>
                 </div>
@@ -313,11 +313,11 @@
             data: {
                 labels: ["hhgttg","rateotu","ltuae","slatfatf","mh"],
                 datasets: [{
-                    label: "Guide",
+                    label: "42",
                     fill: false,
-                    backgroundColor: objects["Guide"].color,
-                    borderColor: objects["Guide"].color,
-                    data: objects["Guide"].list
+                    backgroundColor: objects["42"].color,
+                    borderColor: objects["42"].color,
+                    data: objects["42"].list
                 }],
                  options: {
                     scales: {
