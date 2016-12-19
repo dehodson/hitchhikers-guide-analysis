@@ -172,11 +172,22 @@
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Google Web Fonts and<br>Font Awesome Icons</h2>
-                    <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
+                    <h2 class="section-heading">Mentions of minor characters</h2>
+                    <p class="lead">
+                        <input type="checkbox" name="" value="" onchange="toggle2('Guide');" checked>&nbsp;&nbsp;The Guide<br>
+                        <input type="checkbox" name="" value="" onchange="toggle2('Vogon');">&nbsp;&nbsp;The Vogons<br>
+                        <input type="checkbox" name="" value="" onchange="toggle2('Blaster');">&nbsp;&nbsp;Pan Galactic Gargle Blaster<br>
+                        <input type="checkbox" name="" value="" onchange="toggle2('Improbability');">&nbsp;&nbsp;Infinite Improbability Drive<br>
+                        <input type="checkbox" name="" value="" onchange="toggle2('Sirius');">&nbsp;&nbsp;The Sirius Cybernetics Corporation<br>
+                        <input type="checkbox" name="" value="" onchange="toggle2('Krikkit');">&nbsp;&nbsp;Krikkit<br>
+                        <input type="checkbox" name="" value="" onchange="toggle2('42');">&nbsp;&nbsp;Fourty-Two<br>
+                        <input type="checkbox" name="" value="" onchange="toggle2('Golgafrinchan');">&nbsp;&nbsp;The Golgafrinchans<br>
+                    </p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/phones.png" alt="">
+                    <canvas id="canvas2" width="300" height="300">
+                      Sorry, your browser doesn't support the &lt;canvas&gt; element.
+                    </canvas>
                 </div>
             </div>
 
@@ -262,6 +273,18 @@
             "Fenchurch":      {color: "#0000FF", list: [0, 0, 0, 103, 3]}
         };
 
+        //Magrathea?
+        objects = {
+            "Guide":          {color: "#FF0000", list: [26, 24, 25, 25, 76]},
+            "Vogon":          {color: "#00FF00", list: [75, 37, 2, 8, 15]},
+            "Blaster":        {color: "#00FFFF", list: [7, 4, 0, 0, 0]},
+            "Improbability":  {color: "#FFFF00", list: [4, 3, 1, 0, 1]},
+            "Sirius":         {color: "#000000", list: [8, 11, 0, 2, 0]},
+            "42":             {color: "#424242", list: [7, 11, 4, 3, 3]},
+            "Krikkit":        {color: "#0000FF", list: [0, 0, 96, 3, 0]},
+            "Golgafrinchan":  {color: "#FF00FF", list: [0, 5, 2, 0, 0]}
+        };
+
         config = {
             type: 'line',
             data: {
@@ -272,6 +295,29 @@
                     backgroundColor: data["Slartibartfast"].color,
                     borderColor: data["Slartibartfast"].color,
                     data: data["Slartibartfast"].list
+                }],
+                 options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            }
+        };
+
+        config2 = {
+            type: 'line',
+            data: {
+                labels: ["hhgttg","rateotu","ltuae","slatfatf","mh"],
+                datasets: [{
+                    label: "Guide",
+                    fill: false,
+                    backgroundColor: objects["Guide"].color,
+                    borderColor: objects["Guide"].color,
+                    data: objects["Guide"].list
                 }],
                  options: {
                     scales: {
@@ -311,9 +357,37 @@
             window.lineChart.update();
         }
 
+        function toggle2(name){
+            var found = false;
+
+            for(var i = 0; i < config2.data.datasets.length; i++){
+                if(config2.data.datasets[i].label == name){
+                    config2.data.datasets.splice(i, 1);
+                    found = true;
+                    break;
+                }
+            }
+
+            if(!found){
+                newData = {
+                    label: name,
+                    fill: false,
+                    backgroundColor: objects[name].color,
+                    borderColor: objects[name].color,
+                    data: objects[name].list
+                };
+
+                config2.data.datasets.push(newData);
+            }
+
+            window.lineChart2.update();
+        }
+
         window.onload = function(){
             var ctx = document.getElementById("canvas");
-            window.lineChart =  new Chart(ctx, config);
+            var cty = document.getElementById("canvas2");
+            window.lineChart  =  new Chart(ctx, config);
+            window.lineChart2 =  new Chart(cty, config2);
         };
     </script>
 
